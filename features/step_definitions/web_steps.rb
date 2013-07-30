@@ -120,7 +120,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
-Then /^I should see all of the movies$/ do
+Then /^I should see all the movies$/ do
 	page.body.scan(/<tr>/).length == 10
 end
 

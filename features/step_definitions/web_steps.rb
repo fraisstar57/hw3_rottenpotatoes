@@ -87,10 +87,12 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
+  puts "made it to check with " + field
   check(field)
 end
 
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
+  puts "made it to uncheck with " + field
   uncheck(field)
 end
 

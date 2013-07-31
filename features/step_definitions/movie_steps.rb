@@ -28,7 +28,7 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
   rating_list.to_s.split(',').each do |r| 
   r = r.gsub(/\s+/, "")
-  puts "rating: " + r + uncheck.to_s
+  #puts "rating: " + r + uncheck.to_s
   @ratingsTest = "ratings_"
   if(uncheck == "un")
 	#puts "rating: " + r + uncheck.to_s

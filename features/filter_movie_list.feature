@@ -30,8 +30,10 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   When I press "Refresh"
   # enter step(s) to ensure that PG and R movies are visible
   #Then I should see "The Terminator" 
-  Then I should see "When Harry Met Sally"
-  And I should see "Amelie"
+  #Then I should see "When Harry Met Sally"
+  #And I should see "Amelie" 
+  Then I should see "PG"
+  And I should see "R"
   And I should see "The Incredibles"
   And I should see "Raiders of the Lost Ark"
   # enter step(s) to ensure that other movies are not visible  

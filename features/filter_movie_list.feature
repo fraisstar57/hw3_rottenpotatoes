@@ -20,6 +20,18 @@ Background: movies have been added to database
   | Chicken Run             | G      | 21-Jun-2000  |
 
   And  I am on the RottenPotatoes home page
+
+Scenario: all ratings selected
+  Given I check the following ratings: G, PG, PG-13, R
+  When I press "Refresh"
+  Then I should see all the movies
+
+Scenario: no ratings selected
+  # see assignment
+  Given I am on the RottenPotatoes home page
+  When I uncheck the following ratings: G, PG, PG-13, R 
+  When I press "Refresh"
+  Then I should see all the movies
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to check the 'PG' and 'R' checkboxes
@@ -42,15 +54,3 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   #And I should not see "Chocolate"
   #And I should not see "2001: A Space Odyssey"
   And I should not see "Chicken Run"
-
-Scenario: no ratings selected
-  # see assignment
-  Given I am on the RottenPotatoes home page
-  When I uncheck the following ratings: G, PG, PG-13, R 
-  When I press "Refresh"
-  Then I should see all the movies
-
-Scenario: all ratings selected
-  Given I check the following ratings: G, PG, PG-13, R
-  When I press "Refresh"
-  Then I should see all the movies

@@ -33,11 +33,11 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   if(uncheck == nil)
 	#puts "rating: " + r + uncheck.to_s
 	#WithinHelpers step %Q{I uncheck #{r} }
-	uncheck(@ratingsTest+r)
+	check(@ratingsTest+r)
   else 
 	#puts "rating: " + r + uncheck.to_s
     #WithinHelpers step %Q{I check #{r} }
-	check(@ratingsTest+r)
+	uncheck(@ratingsTest+r)
   end
   
   end

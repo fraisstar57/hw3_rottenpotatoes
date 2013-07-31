@@ -37,11 +37,12 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   #And I should see "The Incredibles"
   #And I should see "Raiders of the Lost Ark"
   # enter step(s) to ensure that other movies are not visible  
-  And I should not see "Aladdin" 
-  And I should not see "The Help"
-  And I should not see "Chocolate"
-  And I should not see "2001: A Space Odyssey"
-  And I should not see "Chicken Run"
+  #And I should not see "Aladdin" 
+  #And I should not see "The Help"
+  #And I should not see "Chocolate"
+  #And I should not see "2001: A Space Odyssey"
+  #And I should not see "Chicken Run"
+  And I should not see "PG-13" 
 
 Scenario: no ratings selected
   # see assignment

@@ -31,11 +31,11 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that PG and R movies are visible
   Then I should be on the RottenPotatoes home page
   # enter step(s) to ensure that other movies are not visible
-  And I should see "The Terminator" 
-  And I should see "When Harry Met Sally"
-  And I should see "Amelie"
-  And I should see "The Incredibles"
-  And I should see "Raiders of the Lost Ark"
+  And I should not see "Aladdin" 
+  And I should not see "The Help"
+  And I should not see "Chocolate"
+  And I should not see "2001: A Space Odyssey"
+  And I should not see "Chicken Run"
 
 Scenario: no ratings selected
   # see assignment

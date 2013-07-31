@@ -29,8 +29,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step to "submit" the search form on the homepage
   When I press "Refresh"
   # enter step(s) to ensure that PG and R movies are visible
-  Then I should be on the RottenPotatoes home page
-  And I should see "The Terminator" 
+  Then I should see "The Terminator" 
   And I should see "When Harry Met Sally"
   And I should see "Amelie"
   And I should see "The Incredibles"

@@ -27,11 +27,17 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
   rating_list.to_s.split(',').each do |r| 
-  #puts "rating: " + r + uncheck.to_s
+  r = r.gsub(/\s+/, "")
+  puts "rating: " + r + uncheck.to_s
+  @ratingsTest = "ratings_"
   if(uncheck == "un")
-	"When I uncheck #{r}"
+	#puts "rating: " + r + uncheck.to_s
+	#WithinHelpers step %Q{I uncheck #{r} }
+	uncheck(@ratingsTest+r)
   else 
-    "When I check #{r}" 
+	#puts "rating: " + r + uncheck.to_s
+    #WithinHelpers step %Q{I check #{r} }
+	check(@ratingsTest+r)
   end
   
   end

@@ -22,6 +22,10 @@ end
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
+When /I print the page body/ do
+  puts "AND THE PAGE BODY IS..." + page.body.to_s
+end
+
 When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
@@ -30,14 +34,25 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   r = r.gsub(/\s+/, "")
   #puts "rating: " + r + uncheck.to_s
   @ratingsTest = "ratings_"
-  if(uncheck == nil)
+  @checkboxField = @ratingsTest+r  
+  #web_steps %Q{I #{uncheck}check #{@checkboxField}}
+  #check(@ratingsTest+r)
+	
+  if(uncheck == "un")
 	#puts "rating: " + r + uncheck.to_s
-	#WithinHelpers step %Q{I uncheck #{r} }
-	check(@ratingsTest+r)
+	#WithinHelpers step %Q{I #{uncheck}check #{r} }
+	#page.check(@checkboxField.to_s)
+    #@field = find_field(@checkboxField)
+	#puts @field	
+	#debugger
+	step %Q{I uncheck "#{@checkboxField}"}
   else 
 	#puts "rating: " + r + uncheck.to_s
-    #WithinHelpers step %Q{I check #{r} }
-	uncheck(@ratingsTest+r)
+    #WithinHelpers step %Q{I #{uncheck}check #{r} }
+	#page.uncheck(@checkboxField.to_s)
+    #@field = find_field(@checkboxField)
+	#puts @field
+	step %Q{I check "#{@checkboxField}"}
   end
   
   end

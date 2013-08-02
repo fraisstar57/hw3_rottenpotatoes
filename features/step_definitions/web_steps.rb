@@ -110,6 +110,14 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
+Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_no_content(text)
+  else
+    assert page.has_no_content?(text)
+  end
+end
+
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
@@ -122,14 +130,6 @@ end
 
 Then /^I should see all the movies$/ do
 	page.body.scan(/<tr>/).length == 10
-end
-
-Then /^(?:|I )should not see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_no_content(text)
-  else
-    assert page.has_no_content?(text)
-  end
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|

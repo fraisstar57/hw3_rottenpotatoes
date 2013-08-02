@@ -20,9 +20,47 @@ Background: movies have been added to database
   | Chicken Run             | G      | 21-Jun-2000  |
 
   And  I am on the RottenPotatoes home page
+  
+  # enter step(s) to check the 'PG' and 'R' checkboxes
+  # enter step(s) to uncheck all other checkboxes
+	# enter step to "submit" the search form on the homepage
+	# enter step(s) to ensure that PG and R movies are visible 
+Scenario: restrict to movies with 'PG' or 'R' ratings
+  When I print the page body
+  When I check the following ratings: G, PG, PG-13, R
+  When I press "Refresh"
+  When I print the page body
+  When I check the following ratings: G,PG-13
+  #And I uncheck the following ratings: G,PG-13
+  And I press "Refresh"
+  When I print the page body
+  And I check the following ratings: PG,R
+  #And I uncheck the following ratings: G,PG-13
+  And I press "Refresh"
+  When I print the page body
+  When I uncheck the following ratings: G, PG, PG-13, R 
+  #And I uncheck the following ratings: G,PG-13
+  And I press "Refresh"
+  When I print the page body
+  And I check the following ratings: PG,R
+  #And I uncheck the following ratings: G,PG-13
+  And I press "Refresh"
+  When I print the page body
+  Then I should see "The Terminator" 
+  And I should see "When Harry Met Sally"
+  And I should see "Amelie" 
+  And I should see "The Incredibles"
+  And I should see "Raiders of the Lost Ark"  
+	# enter step(s) to ensure that other movies are not visible 
+  Then I should not see "Aladdin" 
+  And I should not see "The Help"
+  And I should not see "Chocolat"
+  And I should not see "2001: A Space Odyssey"
+  And I should not see "Chicken Run"
 
 Scenario: all ratings selected
-  Given I check the following ratings: G, PG, PG-13, R
+  Given I am on the RottenPotatoes home page
+  When I check the following ratings: G, PG, PG-13, R
   When I press "Refresh"
   Then I should see all the movies
 
@@ -32,25 +70,3 @@ Scenario: no ratings selected
   When I uncheck the following ratings: G, PG, PG-13, R 
   When I press "Refresh"
   Then I should see all the movies
-  
-Scenario: restrict to movies with 'PG' or 'R' ratings
-  # enter step(s) to check the 'PG' and 'R' checkboxes
-  #Given I uncheck the following ratings: G, PG, PG-13, R 
-  Given I check the following ratings: G, PG-13
-  # enter step(s) to uncheck all other checkboxes
-  Given I uncheck the following ratings: PG, R
-  #And I uncheck the following ratings: G, PG-13
-  # enter step to "submit" the search form on the homepage
-  When I press "ratings_submit"
-  # enter step(s) to ensure that PG and R movies are visible 
-  Then I should see "Aladdin" 
-  And I should see "The Help"
-  And I should see "Chocolat"
-  And I should see "2001: A Space Odyssey"
-  And I should see "Chicken Run"
-  # enter step(s) to ensure that other movies are not visible 
-  Then I should not see "The Terminator" 
-  And I should not see "When Harry Met Sally"
-  And I should not see "Amelie" 
-  And I should not see "The Incredibles"
-  And I should not see "Raiders of the Lost Ark"
